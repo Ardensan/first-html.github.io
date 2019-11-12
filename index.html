@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>All Right</title>
+<style>
+  *{margin:0; padding:0}
+  body{
+   background-color:#000;
+  }
+  #biaotou{
+	  width:1200px;
+	  height:600px;
+	 background-color:#FFF;
+	  margin-left:50px;
+	  margin-top:100px;
+	  }
+#guanli{width:120px; text-align:center }
+#guanli h3{ cursor:pointer; line-height:30px; height:30px; background-color:green; color:#fff; }
+#guanli a{display:block; line-height:24px;color:yellow; background-color:#FF0000;}   
+#guanli a:hover{background-color:#eee; color:#000;}
+#guanli div{display:none; border:1px solid #000; border-top:none}
+#biaodan{
+	 
+	width:1075px;
+	  height:500px;
+	  background-color:#555;
+	}
+#you{
+	position: absolute;
+	left: 1210px;
+	top: 100px;
+	width:700px;
+	height:700px;
+}
+</style>
+<script>
+function $(id){return document.getElementById(id)}
+window.onload = function(){
+ $("guanli").onclick = function(e){
+ 
+  var src = e?e.target:event.srcElement;
+  if(src.tagName == "H3"){
+   var next = src.nextElementSibling || src.nextSibling;
+   next.style.display = (next.style.display =="block")?"none":"block";
+  }
+ }
+}
+function shuchu(){
+
+var dataList =[["10001", "摩擦学", "20","Mr.我","生理健康"], ["10002","c语言从研发到脱发","20","Mr.特","生理保健"], ["10003", "ios开发从入门到下架","23","Mr.么","修仙"],["10004", "java由初学至搬砖","23","Mr.射","体育锻炼"],["10005", "黑客攻防：从入门到入狱","23","Mr.精","群众心理学"],["10005", "Debug233个经典案列，让电脑开机蓝屏","23","Mr.了","正确学会放弃"],]; 
+ 
+var colsName =["图书编号", "图书名", "价格", "作者","类型名"];
+ 
+var strTemp = "<p><table align='center' border='1' cellspacing='1' cellpadding='0'><tr>";
+for(var i = 0; i < colsName.length; i++)
+{
+   strTemp += "<td>" + colsName[i] + "</td>";
+}
+strTemp += "<tr>";
+ 
+for(var j = 0; j < dataList.length; j++)
+{
+   strTemp += "<tr>";
+   for(var k = 0; k < colsName.length; k++)
+   {
+      strTemp += "<td>" + dataList[j][k] + "</td>";
+   }
+   strTemp += "<tr>";
+}
+ 
+strTemp += "</table></p>";
+ 
+document.getElementById("shuchuceng").innerHTML=strTemp;
+
+
+}
+
+function dio(){
+var x = document.createElement("AUDIO");
+x.setAttribute("src","55.mp3");  
+x.setAttribute("controls", "controls");
+x.setAttribute("autoplay", "autoplay");
+}
+dio()
+
+
+</script>
+
+</head>
+
+<body>
+
+<div id="biaotou">
+<table width="1200px">
+<tr>
+<td valign="top">
+<div id="guanli">
+ <h3>图书管理</h3>
+    <div>
+     <a href="#">图书新增</a>
+        <a href="#">图书查询</a>
+        <a href="#">图书修改</a>
+        <a href="#">图书删除</a>
+    </div>
+    <h3>订单管理</h3>
+    <div>
+     <a href="#">订单查询</a>
+        <a href="#">订单处理</a>
+    </div>
+     <h3>用户管理</h3>
+    <div>
+     <a href="#">用户新增</a>
+        <a href="#">用户删除</a>
+        <a href="#">用户密码修改</a>
+    </div>
+</div>
+<h1><a href="zhuce.html">注册</a></h1>
+</td>
+
+<td>
+<div id="biaodan">
+    <table width="100%">
+    	<table width="100%">
+    <tr><td align="center">
+    <h1>订单处理</h1>
+    </td></tr>
+  		  </table>
+          <table  width="100%">
+    <tr>
+    <td width="400" align="right">请输入图书名：</td>
+    <td width="200"> <input type="text"></td>
+    <td> <input type="submit" value="确定" onclick="shuchu()"></td>
+    </tr>
+    </table>
+	<table width="100%">
+	<tr>
+	<td>
+	<div id="shuchuceng" align="center"> </div></td>
+	</tr>
+	</table>
+   </table>
+   
+    </div>
+    </td>
+    </tr>
+	
+    </table>
+	<div id="you" onclick="ping()"></div>
+    </div>
+    
+    
+
+</body>
+</html>

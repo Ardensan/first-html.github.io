@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.code 
+{
+ background:url(code_bg.jpg);
+ font-family:Arial;
+ font-style:italic;
+ color:blue;
+ font-size:30px;
+ border:0;
+ padding:2px 3px;
+ letter-spacing:3px;
+ font-weight:bolder;
+ float:left;
+ cursor:pointer;
+ width:150px;
+ height:60px;
+ line-height:60px;
+ text-align:center;
+ vertical-align:middle;
+}
+a 
+{
+ text-decoration:none;
+ font-size:12px;
+ color:#288bc4;
+}
+a:hover 
+{
+ text-decoration:underline;
+}
+</style>
+
+</head>
+
+<body onload="createCode()">
+<form id="form1" runat="server" onsubmit="validateCode()">
+<h1 align="center">用户注册</h1>
+<table width="500" align="center">
+<tr>
+<td width="70">
+账户名：
+</td> 	<td width="230"> <input type="text" id="names" onblur="oBlur_1()"  onfocus="oFocus_1()" ></td><td width="200"><label  id="fw"></label> </td>
+</tr>
+<tr>
+<td width="70">
+密码：
+</td> 	<td> <input type="password" id="pw" name="password_plain" onblur="oBlur_2()"  onfocus="oFocus_2()"></td><td width="200"><label  id="fw1"></label> </td>
+</tr>
+<tr><td><div class="code" id="checkCode" onclick="createCode()" ></div></td>
+    <td><a href="#" onclick="createCode()">看不清换一张</a></td></tr>
+    <tr>
+    <td>验证码：</td>
+    <td><input style="float:left;" type="text"  id="inputCode" /></td>
+    <td>请输入验证码</td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><input id="Button1" onclick="validateCode();" type="button" value="确定" /></td>
+    <td></td>
+   </tr>
+</table>
+
+
+</form>
+</body>
+<script>
+function oBlur_1() {
+	var a = document.getElementById("names").value;
+    if (!a) { //用户框value值为空
+        document.getElementById("fw").innerHTML = "<span style='font-size:18px;color:red;'>请输入用户名!</span>";
+    }
+	 else { //用户框value值不为空
+        document.getElementById("fw").innerHTML = "";
+    }
+}
+function oBlur_2() {
+	var b = document.getElementById("pw").value;
+    if (!b) { //用户框value值为空
+        document.getElementById("fw1").innerHTML = "<span style='font-size:18px;color:red;'>请输入密码!</span>";
+    } 
+	else { //用户框value值不为空
+        document.getElementById("fw1").innerHTML = "";
+    }
+}
+function oFocus_1() {
+    document.getElementById("fw").innerHTML = "";
+    
+}
+function oFocus_2() {
+    document.getElementById("fw1").innerHTML = "";
+}
+
+var code;
+	function createCode() 
+{
+ code = "";
+ var codeLength = 1; //验证码的长度
+ var checkCode = document.getElementById("checkCode");
+ var codeChars = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 
+      'a','b','c','d','e','f','g','h','i','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z',
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',  'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+ for(var i = 0; i < codeLength; i++) 
+ {
+  var charNum = Math.floor(Math.random() * 52);
+  code += codeChars[charNum];
+ }
+ if(checkCode) 
+ {
+  checkCode.className = "code";
+  checkCode.innerHTML = code;
+ 	}
+}
+	function validateCode() 
+{
+	var a = document.getElementById("names").value;
+	var b = document.getElementById("pw").value;
+ var inputCode=document.getElementById("inputCode").value;
+ if(inputCode.length <= 0) 
+ {
+  alert("请输入验证码！");
+ }
+ else if(inputCode.toUpperCase() != code.toUpperCase()) 
+ {
+   alert("验证码输入有误！");
+   createCode();
+ }
+ else if(!a || !b) 
+ {
+   alert("注册失败，请输入用户名和密码");
+   createCode();
+ }
+ else 
+ {
+  alert("验证码正确！注册成功");
+  
+ }    
+}  
+</script>
+</html>
